@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redis
+    restart: always
+
+  webapp:
+    restart: always
+    build:
+      context: ./linuganex_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/src
+    command: ["python3", "./src/manage.py", "runserver", "0.0.0.0:8000"]
+
+  worker:
+    restart: always
+    build:
+      context: ./linuganex_api
+    volumes:
+      - ./
+    command: ['celery', '--workdir=./src', '-A', 'api_config', 'worker']
+
+  selenium:
+    image: selenium/standalone-chrome
+    ports:
+      - "4444:4444"
+    restart: always
