@@ -1,9 +1,23 @@
 version: '3.9'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "app"
+      PGDATA: /home/ubuntu/postgres/data
+      POSTGRES_INITDB_ARGS: "-A md5"
+    ports:
+      - "5432:5432"
+
   redis:
     image: redis
     restart: always
+    shm_size: 1gb
+
 
   webapp:
     restart: always
@@ -14,17 +28,31 @@ services:
     volumes:
       - .:/src
     command: ["python3", "./src/manage.py", "runserver", "0.0.0.0:8000"]
+    environment:
+      - DB_BACKEND=postgresql
+      - DB_NAME=app
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
 
   worker:
     restart: always
     build:
       context: ./linuganex_api
-    volumes:
-      - ./
+    shm_size: 1gb
     command: ['celery', '--workdir=./src', '-A', 'api_config', 'worker']
+
 
   selenium:
     image: selenium/standalone-chrome
     ports:
       - "4444:4444"
     restart: always
+    shm_size: 1gb
+    volumes:
+      - ./src:/src
+
+

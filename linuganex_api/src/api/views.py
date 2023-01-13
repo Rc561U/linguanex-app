@@ -15,7 +15,7 @@ def home(request):
     #     publishedYear=1232,
     #     email='mail@mail.cim',
     # )
-    tasks.save_product_by_id.delay()
+    tasks.main.delay()
     return HttpResponse("<h1>Loading..</h1>")
 
 
