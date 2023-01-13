@@ -5,7 +5,8 @@ from .models import Application
 from rest_framework import generics
 from .serializers import AppSerializer
 # Create your views here.
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 def home(request):
     # task
@@ -29,3 +30,10 @@ class ApplicationApiView(generics.ListAPIView):
     #     email=777,
     # )
     serializer_class = AppSerializer
+
+
+class ApplicationApiOrderedBy(generics.ListAPIView):
+    queryset = Application.objects.order_by('publishedYear')
+
+    serializer_class = AppSerializer
+

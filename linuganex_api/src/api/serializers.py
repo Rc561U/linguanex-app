@@ -5,4 +5,4 @@ from .models import Application
 class AppSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
-        fields = ('title', 'publisher',"publishedYear", 'email')
+        fields = ('id', 'title', 'publisher', "publishedYear", 'email')
