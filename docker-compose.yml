@@ -27,7 +27,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/src
-    command: ["python3", "./src/manage.py", "runserver", "0.0.0.0:8000"]
+    command: [ "python3", "./src/manage.py", "runserver", "0.0.0.0:8000" ]
     environment:
       - DB_BACKEND=postgresql
       - DB_NAME=app
@@ -43,7 +43,7 @@ services:
     build:
       context: ./linuganex_api
     shm_size: 1gb
-    command: ['celery', '--workdir=./src', '-A', 'api_config', 'worker']
+    command: [ 'celery', '--workdir=./src', '-A', 'api_config', 'worker' ]
 
 
   selenium:

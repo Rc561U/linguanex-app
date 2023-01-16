@@ -8,32 +8,12 @@ from .serializers import AppSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+
 def home(request):
-    # task
-    # Application.objects.get_or_create(
-    #     title="Test",
-    #     publisher="Poloes",
-    #     publishedYear=1232,
-    #     email='mail@mail.cim',
-    # )
     tasks.main.delay()
-    return HttpResponse("<h1>Loading..</h1>")
+    return HttpResponse("<h1>Scrap information. Please wait and check console..</h1>")
 
 
 class ApplicationApiView(generics.ListAPIView):
     queryset = Application.objects.all()
-
-    # Application.objects.get_or_create(
-    #     title=123,
-    #     publisher=123,
-    #     publishedYear=234,
-    #     email=777,
-    # )
     serializer_class = AppSerializer
-
-
-class ApplicationApiOrderedBy(generics.ListAPIView):
-    queryset = Application.objects.order_by('publishedYear')
-
-    serializer_class = AppSerializer
-

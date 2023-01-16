@@ -1,22 +1,38 @@
-# Scraper (Python, Django, Vue3)
+# Data-Scraper (Python+Django, Vue3+Vuetify)
+<hr />
 
-### Start application
+### This application retrieves information from  [Microsoft store](https://apps.microsoft.com/store/category/Business) and return it in convenient way.
+> ### Technologies used:
+>
+> - Docker & Docker-Compose
+> - Celery
+> - Redis
+> - Django Rest Framework
+> - **Selenium**
+> - Vuetify 3
+<hr />
+## Instalation
+
+### 1. Start application
 ```bash
-docker compose up --build
+docker-compose up --build
 ```
 
-### Make database migrations
+### 2. Make database migrations
 ```bash
-docker compose exec webapp bash
+docker-compose exec webapp bash
 ``` 
 ```bash
 cd src/
 ``` 
 ```bash
+python manage.py makemigrations
+``` 
+```bash
 python manage.py migrate
 ``` 
 
-## Run UI application
+## 3. Run UI application
 ```bash
 cd linguanex_ui/
 ```
@@ -26,9 +42,10 @@ npm install
 ```bash
 npm run serve
 ```
+<hr />
 
-## Result
-[<img style="witdh:100px" src="https://res.cloudinary.com/djd9bqakh/image/upload/v1673859333/screanshot_vr0n9v.png">](https://cloudinary.com/)
+## Result 
+[<img style="witdh:100px" src="https://res.cloudinary.com/djd9bqakh/image/upload/v1673859333/screanshot_vr0n9v.png">](https://res.cloudinary.com/djd9bqakh/image/upload/v1673859333/screanshot_vr0n9v.png)
 
 
 

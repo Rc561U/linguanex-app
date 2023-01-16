@@ -18,10 +18,8 @@ from django.urls import path
 from api import views
 from api.views import *
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
     path('api/', ApplicationApiView.as_view()),
-    path('api/order-by/', ApplicationApiOrderedBy.as_view()),
 ]
