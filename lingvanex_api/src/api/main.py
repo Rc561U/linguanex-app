@@ -238,6 +238,7 @@ def main():
     for webElement in elements_collection:
         ids = webElement.get_attribute("href").split("/")[-1]
         get_product_by_id(ids)
+    print('Done successfully!')
 
 
 if __name__ == "__main__":

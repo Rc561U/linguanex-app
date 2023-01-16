@@ -22,7 +22,7 @@ services:
   webapp:
     restart: always
     build:
-      context: ./linuganex_api
+      context: ./lingvanex_api
     ports:
       - "8000:8000"
     volumes:
@@ -41,7 +41,7 @@ services:
   worker:
     restart: always
     build:
-      context: ./linuganex_api
+      context: ./lingvanex_api
     shm_size: 1gb
     command: [ 'celery', '--workdir=./src', '-A', 'api_config', 'worker' ]
 
