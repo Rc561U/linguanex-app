@@ -1,5 +1,5 @@
 # Data-Scraper (Python+Django, Vue3+Vuetify)
-<hr />
+
 
 ### This application retrieves information from  [Microsoft store](https://apps.microsoft.com/store/category/Business) and return it in convenient way.
 > ### Technologies used:
@@ -10,7 +10,7 @@
 > - Django Rest Framework
 > - **Selenium**
 > - Vuetify 3
-<hr />
+
 ## Instalation
 
 ### 1. Start application
@@ -42,12 +42,7 @@ npm install
 ```bash
 npm run serve
 ```
-<hr />
+
 
 ## Result 
 [<img style="witdh:100px" src="https://res.cloudinary.com/djd9bqakh/image/upload/v1673859333/screanshot_vr0n9v.png">](https://res.cloudinary.com/djd9bqakh/image/upload/v1673859333/screanshot_vr0n9v.png)
-
-
-
-
-
