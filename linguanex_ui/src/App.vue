@@ -10,7 +10,6 @@
                     height="max-content"
                 >
 
-
                     <!--            Main data table component -->
                     <v-row align="stretch">
                         <v-col
@@ -21,34 +20,13 @@
                             />
                         </v-col>
                     </v-row>
-<!--                    <div class="text-center">-->
-<!--                        <v-row-->
-<!--                            :align="align"-->
-<!--                            no-gutters-->
-<!--                            style=""-->
-<!--                        >-->
-<!--                            <v-col>-->
-
-<!--                                <v-pagination-->
-<!--                                    v-model="page"-->
-<!--                                    :length="totalPages"-->
-<!--                                    :total-visible="8"-->
-<!--                                    @update:modelValue="changePage"-->
-<!--                                    @next:nextPage="nextPage"-->
-<!--                                    @prev:previousPage="previousPage"-->
-<!--                                ></v-pagination>-->
-
-<!--                            </v-col>-->
-<!--                            <PerPage/>-->
-
-<!--                        </v-row>-->
-<!--                    </div>-->
 
                 </v-card>
 
             </div>
 
             <v-progress-circular v-else
+
                                  indeterminate
                                  class="progress_error"
                                  :size="80"
@@ -62,18 +40,12 @@
 <script>
 import UsersTable from "@/components/UsersTable.vue";
 import axios from "axios";
-// import {tr} from "vuetify/locale";
+
 import NavBar from "@/components/NavBar.vue";
-// import PerPage from "@/components/PerPage.vue";
-// import SearchCompany from "@/components/SearchCompany.vue";
+
 
 export default {
     name: 'App',
-    // computed: {
-    //     tr() {
-    //         return tr
-    //     }
-    // },
     components: {
         NavBar,UsersTable
     },
@@ -93,24 +65,8 @@ export default {
 
     }),
     methods: {
-        // async fetchUsers() {
-        //     try {
-        //         const response = await axios.get("http://localhost:8000/api/?limit=10", {
-        //             params: {
-        //                 offset: this.page * 10,
-        //             },
-        //         });
-        //         this.totalPages = Math.ceil(response.data.count / this.limit)
-        //         this.nextPage = response.data.next
-        //         this.previousPage = response.data.previous
-        //         this.users = response.data.results;
-        //
-        //
-        //     } catch (e) {
-        //         this.alert_text = `Server is not available`;
-        //         this.snackbar = true;
-        //     }
-        // },
+
+
         async fetchUsers() {
             try {
                 const response = await axios.get("http://localhost:8000/api/", {
@@ -136,7 +92,6 @@ export default {
                 this.snackbar = true;
             }
         },
-
 
         changePage() {
             this.user = []

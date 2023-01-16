@@ -18,7 +18,17 @@
             :search="search"
             calculate-widths
 
-        ></v-data-table>
+        >
+            <template v-slot:item="{item, index}">
+            <tr>
+              <td>{{index + 1}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.publisher}}</td>
+              <td>{{item.publishedYear}}</td>
+              <td>{{item.email}}</td>
+            </tr>
+          </template>
+        </v-data-table>
     </v-card>
 </template>
 <script>
