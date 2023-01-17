@@ -1,45 +1,3 @@
-# from celery import shared_task
-# import time
-# from selenium import webdriver
-#
-# from selenium.webdriver.chrome.webdriver import WebDriver
-# from selenium.webdriver.common.by import By
-# import json
-# import re
-# import requests
-# import datetime
-# from datetime import datetime
-# from .models import Application
-#
-#
-# # @shared_task
-# # def get_chrome_driver() -> WebDriver:
-# #     options = webdriver.ChromeOptions()
-# #     options.add_argument("--headless")
-# #     options.add_argument("- incognito")
-# #     options.add_argument("--no-sandbox")
-# #     options.add_argument("--window-size=1920,1080")
-# #     time.sleep(5)
-# #     driver = webdriver.Remote('http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME,
-# #                             options=options)
-# #     driver.get('https://python.org')
-# #     driver.save_screenshot('screenshot.png')
-# #     return driver
-#
-#
-# @shared_task
-# def save_product_by_id():
-#     options = webdriver.ChromeOptions()
-#     options.add_argument("--headless")
-#     options.add_argument("- incognito")
-#     options.add_argument("--no-sandbox")
-#     options.add_argument("--window-size=1920,1080")
-#     time.sleep(5)
-#     driver = webdriver.Remote('http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME,
-#                             options=options)
-#     driver.get('https://python.org')
-#     driver.save_screenshot('screenshot.png')
-
 from celery import shared_task
 import time
 from selenium import webdriver
@@ -90,7 +48,6 @@ def scrape(driver: WebDriver, url: str, pause: int) -> list:
 def record(collection):
     for i, webElement in enumerate(collection):
         with open("ids.txt", "a", newline="") as file:
-            # zalupa.append(webElement.get_attribute("href").split("/")[-1])
             ids = webElement.get_attribute("href").split("/")[-1]
             file.write(ids + "\n")
 
@@ -141,6 +98,7 @@ def save_product_by_id(json_data):
         email=checkEmail(json_data["supportUris"][0]['uri']) if checkEmail(
             json_data["supportUris"][0]['uri']) else 'No email',
     )
+    print(f'Product {json_data["title"]} successfully saved')
 
 
 @shared_task
@@ -164,14 +122,3 @@ def main():
     for webElement in elements_collection:
         ids = webElement.get_attribute("href").split("/")[-1]
         get_product_by_id(ids)
-
-
-@shared_task
-def test():
-
-    data = Application.objects.get_or_create(
-        title='title from task',
-        publisher='publisher from task',
-        publishedYear='test date',
-        email="test@email.cd",
-    )
